@@ -2,7 +2,7 @@ import os
 
 import connexion
 
-from .web import encoder
+from poc_openapi.web import encoder
 
 
 def create_app():

@@ -15,6 +15,10 @@ tags:
 schemes:
 - "https"
 - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
 paths:
   /rules:
     get:
@@ -33,12 +37,6 @@ paths:
       - "rules"
       summary: "Add a new rule to opengate"
       operationId: "add_rule"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      produces:
-      - "application/xml"
-      - "application/json"
       parameters:
       - in: "body"
         name: "body"
@@ -80,18 +78,13 @@ paths:
       - "rules"
       summary: "Updates a rule in the opengate platform"
       operationId: "update_rule"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/xml"
-      - "application/json"
       parameters:
       - name: "rule_id"
         in: "path"
         description: "ID of rule that needs to be updated"
         required: true
         type: "string"
-      - name: "Rule"
+      - name: "body"
         in: "body"
         required: true
         schema:

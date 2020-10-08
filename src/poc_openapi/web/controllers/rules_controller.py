@@ -19,7 +19,7 @@ def add_rule(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = Rule.from_dict(connexion.request.get_json())  # noqa: E501
-    rules.add_rule(body)
+        rules.add_rule(body)
     return {}, 201
 
 
@@ -72,7 +72,7 @@ def get_rule_by_id(rule_id):  # noqa: E501
     return response
 
 
-def update_rule(rule_id, Rule):  # noqa: E501
+def update_rule(rule_id, body):  # noqa: E501
     """Updates a rule in the opengate platform
 
      # noqa: E501
@@ -85,5 +85,6 @@ def update_rule(rule_id, Rule):  # noqa: E501
     :rtype: None
     """
     if connexion.request.is_json:
-        Rule = Rule.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        body = Rule.from_dict(connexion.request.get_json())  # noqa: E501
+    rules.update_rule(rule_id, body)
+    return body, {}
