@@ -2,3 +2,4 @@ openapi-test/
 src/poc_openapi/__pycache__/
 *.pyc
 setup.py
+scr/poc_openapi/core/rules.json
