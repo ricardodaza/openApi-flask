@@ -21,8 +21,7 @@ def remove_rule(id):
 
 def update_rule(id, rule):
     rules = read_from_file()
-    ids = rules.keys()
-    #rules[id] = {"name": rule.name, "breed": rule.breed, "price": rule.price}
+    rules[id] = rule
     write_to_file(rules)
 
 
@@ -30,14 +29,12 @@ def add_rule(rule):
     rules = read_from_file()
     new_id = str(uuid.uuid1())
     rules[new_id] = {"identifier": str(new_id), "name": rule.name, "organization": rule.organization, "channel": rule.channel, "javascript": rule.javascript}
-    #rules[new_id] = rule
     write_to_file(rules)
 
 
 def get_rule(id):
     rules = read_from_file()
     rule = rules[id]
-    #rule["identifier"] = id
     return rule
 
 
