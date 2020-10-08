@@ -1,16 +1,1 @@
-{
-    "1": {
-      "channel": "default_channel",
-      "identifier": "uuid1",
-      "javascript": "openAlarm(ruleName);",
-      "name": "mobileICCMistmatch",
-      "organization": "base_organization"
-    },
-    "22ba6198-0951-11eb-8a87-d03745366990": {
-      "identifier": "22ba6198-0951-11eb-8a87-d03745366990",
-      "name": "postmanRule",
-      "organization": "postman_organization",
-      "channel": "postman_channel",
-      "javascript": "openAlarm(ruleName);"
-    }
-  }
+{"22ba6198-0951-11eb-8a87-d03745366990": {"identifier": "22ba6198-0951-11eb-8a87-d03745366990", "name": "postmanRule", "organization": "postman_organization", "channel": "postman_channel", "javascript": "openAlarm(ruleName);"}, "b7088cfa-0954-11eb-8a87-d03745366990": {"identifier": "b7088cfa-0954-11eb-8a87-d03745366990", "name": "postmanRule", "organization": "postman_organization", "channel": "postman_channel", "javascript": "openAlarm(ruleName);"}, "bcc99776-0957-11eb-8a87-d03745366990": {"identifier": "bcc99776-0957-11eb-8a87-d03745366990", "name": "postmanRule", "organization": "postman_organization", "channel": "postman_channel2", "javascript": "openAlarm(ruleName);"}}
