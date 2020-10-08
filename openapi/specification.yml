@@ -1,0 +1,156 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server for Rules."
+  version: "1.0.0"
+  title: "Swagger Rules"
+  contact:
+    email: "ricardo.daza@amplia.es"
+basePath: "/api/v2"
+tags:
+- name: "rules"
+  description: "Everything about your Rules"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /rules:
+    post:
+      tags:
+      - "rules"
+      summary: "Add a new rule to opengate"
+      description: ""
+      operationId: "add_rule"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Rule object"
+        required: true
+        schema:
+          $ref: "#/definitions/Rule"
+      responses:
+        201:
+          description: "Rule added"
+      x-swagger-router-controller: "poc_openapi.web.controllers.rules_controller"
+  /rules/{ruleId}:
+    get:
+      tags:
+      - "rules"
+      summary: "Find rule by ID"
+      description: "Returns a single rule"
+      operationId: "get_rule_by_id"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "ruleId"
+        in: "path"
+        description: "ID of rule to return"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Rule"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Rule not found"
+      x-swagger-router-controller: "poc_openapi.web.controllers.rules_controller"
+    post:
+      tags:
+      - "rules"
+      summary: "Updates a rule in the opengate platform"
+      description: ""
+      operationId: "update_rule"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "ruleId"
+        in: "path"
+        description: "ID of rule that needs to be updated"
+        required: true
+        type: "string"
+      - name: "name"
+        in: "formData"
+        description: "Updated name of the rule"
+        required: false
+        type: "string"
+      - name: "javascript"
+        in: "formData"
+        description: "Updated javascript of the rule"
+        required: false
+        type: "string"
+      responses:
+        "405":
+          description: "Invalid input"
+      x-swagger-router-controller: "poc_openapi.web.controllers.rules_controller"
+    delete:
+      tags:
+      - "rules"
+      summary: "Deletes a rule"
+      description: ""
+      operationId: "delete_rule"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "ruleId"
+        in: "path"
+        description: "Rule id to delete"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Rule not found"
+      x-swagger-router-controller: "poc_openapi.web.controllers.rules_controller"
+definitions:
+  Rules:
+    type: array
+    items:
+      $ref: "#/definitions/Rule"
+  Rule:
+    type: "object"
+    required:
+      - "name"
+      - "organization"
+      - "channel"
+      - "javascript"
+    properties:
+      identifier:
+        type: "string"
+      name:
+        type: "string"
+      organization:
+        type: "string"
+      channel:
+        type: "string"
+      description:
+        type: "string"
+      javascript:
+        type: "string"
+    example:
+      identifier: "29755a03-1bf1-4057-bc14-e4f631d69647"
+      name: "identificationConflict"
+      description: "Collected data found for unknown or more than one matching devices"
+      organization: "root"
+      channel: "default_channel"
+      javascript: "if(entity['device.identification.conflict'] !== null) openAlarm();"
