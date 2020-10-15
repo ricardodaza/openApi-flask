@@ -4,3 +4,4 @@ src/poc_openapi/__pycache__/
 setup.py
 scr/poc_openapi/core/rules.json
 .vscode/
+.python-version
