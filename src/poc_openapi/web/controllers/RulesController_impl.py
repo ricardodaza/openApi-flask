@@ -1,7 +1,6 @@
 import six
 
 from poc_openapi.web.models.rule import Rule  # noqa: E501
-from poc_openapi.web.models.rules import Rules  # noqa: E501
 from poc_openapi.web import util
 
 from poc_openapi.core import rules
