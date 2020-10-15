@@ -2,10 +2,9 @@ import connexion
 import six
 
 from poc_openapi.web.models.rule import Rule  # noqa: E501
-from poc_openapi.web.models.rules import Rules  # noqa: E501
+from poc_openapi.web.controllers import RulesController_impl
 from poc_openapi.web import util
 
-from poc_openapi.core import rules
 
 def add_rule(body):  # noqa: E501
     """Add a new rule to opengate
@@ -19,8 +18,7 @@ def add_rule(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = Rule.from_dict(connexion.request.get_json())  # noqa: E501
-        rules.add_rule(body)
-    return {}, 201
+    return RulesController_impl.add_rule(body)
 
 
 def delete_rule(rule_id):  # noqa: E501
@@ -33,13 +31,7 @@ def delete_rule(rule_id):  # noqa: E501
 
     :rtype: None
     """
-    try:
-        rules.remove_rule(rule_id)
-        response = {}, 200
-    except KeyError:
-        response = {}, 404
-
-    return response
+    return RulesController_impl.delete_rule(rule_id)
 
 
 def get_all_rules():  # noqa: E501
@@ -48,10 +40,9 @@ def get_all_rules():  # noqa: E501
      # noqa: E501
 
 
-    :rtype: Rules
+    :rtype: List[Rule]
     """
-    allRules = rules.get_all_rules()
-    return allRules, 200
+    return RulesController_impl.get_all_rules()
 
 
 def get_rule_by_id(rule_id):  # noqa: E501
@@ -64,12 +55,7 @@ def get_rule_by_id(rule_id):  # noqa: E501
 
     :rtype: Rule
     """
-    try:
-        rule = rules.get_rule(rule_id)
-        response = rule, 200
-    except KeyError:
-        response = {}, 404
-    return response
+    return RulesController_impl.get_rule_by_id(rule_id)
 
 
 def update_rule(rule_id, body):  # noqa: E501
@@ -79,12 +65,11 @@ def update_rule(rule_id, body):  # noqa: E501
 
     :param rule_id: ID of rule that needs to be updated
     :type rule_id: str
-    :param Rule: 
-    :type Rule: dict | bytes
+    :param body: 
+    :type body: dict | bytes
 
     :rtype: None
     """
     if connexion.request.is_json:
         body = Rule.from_dict(connexion.request.get_json())  # noqa: E501
-    rules.update_rule(rule_id, body)
-    return body, {}
+    return RulesController_impl.update_rule(rule_id, body)
